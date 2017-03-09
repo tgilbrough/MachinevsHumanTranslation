@@ -44,7 +44,7 @@ def add_features(line):
     # Features
     line["human_to_trans_len_ratio"] = human_to_trans_ratio(line["human"], line["?"])
     line["original_to_trans_len_ratio"] = original_to_trans_ratio(line["chinese"], line["?"])
-    line["token_ratio"] = token_ratio(h_tran, q_tran)
+    # line["token_ratio"] = token_ratio(h_tran, q_tran)
     line["tree_height_ratio"] = tree_height_ratio(h_tree, q_tree)
     # line["common_words_ratio"] = common_words_ratio(h_tran, q_tran)
     line["gleu"] = gleu(h_tran, q_tran)
