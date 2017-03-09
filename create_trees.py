@@ -1,11 +1,13 @@
 import sys
 from nltk.parse import stanford
 
+filename = 'A5.train.labeled'
+
 # Parser
 parser = stanford.StanfordParser()
 
 # Snag lines from text file
-with open('A5.train.labeled', 'r', encoding='utf-8') as f:
+with open(filename, 'r', encoding='utf-8') as f:
     raw_lines = f.read().split('\n')
 
 lines = []

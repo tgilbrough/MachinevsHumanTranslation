@@ -42,18 +42,18 @@ def add_features(line):
     q_pp = [st for st in q_tree.subtrees() if st.label() == "PP"]
     
     # Features
-    line["human_to_trans_ratio"] = human_to_trans_ratio(line["human"], line["?"])
-    line["original_to_trans_ratio"] = original_to_trans_ratio(line["chinese"], line["?"])
+    line["human_to_trans_len_ratio"] = human_to_trans_ratio(line["human"], line["?"])
+    line["original_to_trans_len_ratio"] = original_to_trans_ratio(line["chinese"], line["?"])
     line["token_ratio"] = token_ratio(h_tran, q_tran)
     line["tree_height_ratio"] = tree_height_ratio(h_tree, q_tree)
     # line["common_words_ratio"] = common_words_ratio(h_tran, q_tran)
     line["gleu"] = gleu(h_tran, q_tran)
     line["chrf"] = chrf(h_tran, q_tran)
-    # line["np_heigth_ratio"] = np_heigth_ratio(h_np, q_np)
-    # line["vp_heigth_ratio"] = vp_heigth_ratio(h_vp, q_vp)
+    # line["np_height_ratio"] = np_height_ratio(h_np, q_np)
+    # line["vp_height_ratio"] = vp_height_ratio(h_vp, q_vp)
     # line["np_density_ratio"] = np_density_ratio(h_np, q_np, h_tran, q_tran)
     # line["vp_density_ratio"] = vp_density_ratio(h_vp, q_vp, h_tran, q_tran)
-    # line["pp_heigth_ratio"] = pp_heigth_ratio(h_pp, q_pp)
+    # line["pp_height_ratio"] = pp_height_ratio(h_pp, q_pp)
     # line["pp_density_ratio"] = pp_density_ratio(h_pp, q_pp, h_tran, q_tran)
     # line["perplexity_ratio"] = perplexity_ratio(h_tran, q_tran, h_log_prob, q_log_prob)
 
@@ -81,12 +81,12 @@ def gleu(h_tran, q_tran):
 def chrf(h_tran, q_tran):
     return sentence_chrf(h_tran, q_tran)
 
-def np_heigth_ratio(h_np, q_np):
+def np_height_ratio(h_np, q_np):
     h_avg = (sum([np.height() for np in h_np]) + k) / (len(h_np) + k)
     q_avg = (sum([np.height() for np in q_np]) + k) / (len(q_np) + k)
     return (h_avg + k) / (q_avg + k)
 
-def vp_heigth_ratio(h_vp, q_vp):
+def vp_height_ratio(h_vp, q_vp):
     h_avg = (sum([vp.height() for vp in h_vp]) + k) / (len(h_vp) + k)
     q_avg = (sum([vp.height() for vp in q_vp]) + k) / (len(q_vp) + k)
     return (h_avg + k) / (q_avg + k)
@@ -101,7 +101,7 @@ def vp_density_ratio(h_vp, q_vp, h_tran, q_tran):
     q_avg = (len(q_vp) + k) / (len(q_tran) + k)
     return (h_avg + k) / (q_avg + k)
 
-def pp_heigth_ratio(h_pp, q_pp):
+def pp_height_ratio(h_pp, q_pp):
     h_avg = (sum([pp.height() for pp in h_pp]) + k) / (len(h_pp) + k)
     q_avg = (sum([pp.height() for pp in q_pp]) + k) / (len(q_pp) + k)
     return (h_avg + k) / (q_avg + k)
